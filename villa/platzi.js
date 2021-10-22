@@ -1,7 +1,15 @@
-var z = aleatorio(10,20);
-document.write(z);
+var vp = document.getElementById("villaplatzi");
+var papel = vp.getContext("2d");
+var mapa = "images/tile.png";
 
+var imagen = new Image();
+imagen.src = mapa;
+imagen.addEventListener("load", dibujar);
 
+function dibujar()
+{
+    papel.drawImage(imagen, 0,0)
+}
 function aleatorio(min, maxi)
 {
     var resultado;
