@@ -1,7 +1,49 @@
 var vp = document.getElementById("villaplatzi");
 var papel = vp.getContext("2d");
 
+document.addEventListener("keydown", moverCerdo);
 
+var xcerdo = 100;
+var ycerdo = 100;
+
+function moverCerdo(e)
+{
+    var movimiento = 5;
+
+    var teclas= 
+    {
+        LEFT: 37,
+        UP : 38,
+        RIGHT : 39,
+        DOWN : 40
+    }
+switch(e.keyCode)
+    {
+        case teclas.LEFT:
+            xcerdo = xcerdo-movimiento;
+            dibujar();
+
+            break;
+
+        case teclas.UP:
+            ycerdo = ycerdo-movimiento;
+            dibujar();
+
+            break;
+
+        case teclas.RIGHT:
+            xcerdo = xcerdo + movimiento;
+            dibujar();
+        
+            break;
+
+        case teclas.DOWN:
+            ycerdo = ycerdo+movimiento;
+            dibujar();
+
+            break;
+    }
+}
 var fondo = {
     url: "tile.png",
     cargaOK: false
@@ -69,20 +111,29 @@ function dibujar()
     }
     if(vaca.cargaOK)
     {
-        for(var v=0; v<10; v++)
-        {
-            var x = aleatorio(0,420);
-            var y = aleatorio(0,420);
+        var cantidad= aleatorio(0,6);
+        var x = 30;
+        var y = 30;
+       for (var i=0; i<cantidad; i++)
+       {
+            x = aleatorio(0,420);
+            y = aleatorio(0,420);
             papel.drawImage(vaca.imagen, x,y);
-        }
+       }
     }
     if(cerdo.cargaOK)
     {
-        papel.drawImage(cerdo.imagen, 100,100);
+        papel.drawImage(cerdo.imagen, xcerdo,ycerdo);
     }
     if(pollo.cargaOK)
     {
-        papel.drawImage(pollo.imagen, 200,200);
+        for (var i=0; i<10; i++)
+        {
+            x = aleatorio(0,420);
+            y = aleatorio(0,420);
+            papel.drawImage(pollo.imagen, x,y);
+        }
+        
     }
 }
 
